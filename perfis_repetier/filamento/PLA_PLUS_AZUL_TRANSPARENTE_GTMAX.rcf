@@ -1,0 +1,10 @@
+[filament]
+name = PLA_PLUS_AZUL_TRANSPARENTE_GTMAX
+diameter = 1.75
+multiplierPercent = 100
+printingTemperature = 185
+enableCooling = True
+bedTemperature = 85
+fanSpeedMin = 50
+fanSpeedMax = 100
+minimalLayerTime = 5

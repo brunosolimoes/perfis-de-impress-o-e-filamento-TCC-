@@ -1,0 +1,116 @@
+[print]
+name = PLA_GTMAX_AZUL_TRANSPARENTE
+defaultQuality = 0RysNv5nCUhGuWqgkZ64SEmHaxX5LvGn
+travelSpeedMin = 80
+travelSpeedMax = 80
+firstLayerSpeedMin = 20
+firstLayerSpeedMax = 20
+infillSpeedMin = 60
+infillSpeedMax = 80
+skinSpeedMin = 30
+skinSpeedMax = 60
+infillType = 0
+innerPerimeterMin = 40
+innerPerimeterMax = 80
+outerPerimeterMin = 30
+outerPerimeterMax = 60
+printSpeedMin = 40
+printSpeedMax = 60
+nozzleDiameter = 0.4
+gcodeFlavour = 0
+retractionCombing = True
+combing = 1
+multiVolumeOverlap = 0
+cutOffObjectBottom = 0
+shellThickness = 1
+infillTopBottomThickness = 1.2
+infillDensityPercent = 20
+supportType = 0
+platformAdhesion = 0
+dualExtrusion = 0
+wipeAndPrimeTower = True
+oozeShield = False
+enableRetraction = True
+retractionSpeed = 30
+retractionDistance = 2.5
+multiExtruderSwitchAmount = 20
+startGCode = """
+; Default start code
+G28 ; Home extruder
+G1 Z5 F{Z_TRAVEL_SPEED}
+M107 ; Turn off fan
+G90 ; Absolute positioning
+M82 ; Extruder in absolute mode
+{IF_BED}M190 S{BED}
+; Activate all used extruder
+{IF_EXT0}M104 T0 S{TEMP0}
+G92 E0 ; Reset extruder position
+; Wait for all used extruders to reach temperature
+{IF_EXT0}M109 T0 S{TEMP0}
+G1 Z1 F{Z_TRAVEL_SPEED}
+"""
+endGCode = """
+; Default end code
+;G1 X0 Y0 Z130 ; Get extruder out of way. Uncomment to use!
+M107 ; Turn off fan
+; Disable all extruder
+G91 ; Relative positioning
+{IF_EXT0}T0
+{IF_EXT0}G1 E-1 ; Reduce filament pressure
+M104 T0 S0
+G90 ; Absolute positioning
+G92 E0 ; Reset extruder position
+M140 S0 ; Disable heated bed
+M84 ; Turn steppers off
+G1 X0 F4800*50
+"""
+preSwitchExtruderCode = 
+postSwitchExtruderCode = 
+wipeAndPrimeTowerVolume = 15
+retractionMinimumTravel = 3
+minimumExtrusionBeforeRetract = 0.02
+zhop = 0.5
+skirtLineCount = 3
+skirtDistance = 0
+skirtMinimumLength = 150
+solidInfillTop = True
+solidInfillBottom = True
+infillOverlapPercent = 20
+supportStructureType = 0
+supportOverhang = 60
+supportFillPercent = 10
+supportDistanceXY = 0.8
+supportDistanceZ = 0.2
+supportExtruder = -1
+spiralizeOuterContour = False
+brimWidth = 4
+raftExtraMargin = 5
+raftLineSpacing = 1
+raftBaseThickness = 0.3
+raftBaseWidth = 0.7
+raftInterfaceThickness = 0.2
+raftInterfaceLineWidth = 0.2
+raftAirGap = 0
+raftAirGapLayer0 = 0
+raftSurfaceLayer = 1
+fixCombineEverythingA = True
+fixCombineEverythingB = False
+fixKeepOpenFaces = False
+fixExtensiveStitching = False
+fanFullAtHeight = 1
+perimeterBeforeInfill = True
+minimumSpeed = 10
+coolHeadLift = False
+numQuality = 2
+[quality_0]
+name = 0.3 mm
+signature = 0RysNv5nCUhGuWqgkZ64SEmHaxX5LvGn
+layerHeight = 0.3
+layer0widthPercent = 100
+firstLayerHeight = 0.4
+[quality_1]
+name = 0.2 mm
+signature = 4VwRFdg9pQ7AVBOQG0kSRi3dG0PKwsO5
+layerHeight = 0.2
+layer0widthPercent = 100
+firstLayerHeight = 0.3
